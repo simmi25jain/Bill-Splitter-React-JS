@@ -34,7 +34,7 @@ function SignUp() {
     return (
         <div className='loginbody'>
             <div className="login-container">
-                <h2>Bill Splitter</h2>
+                <h2 className='loginh2'>Bill Splitter</h2>
                 <p>Split your bills easily</p>
                 <form onSubmit={handleSubmit}> 
                     <input
