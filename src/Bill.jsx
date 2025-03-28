@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import './Bill.css';
+// import './Bill.css';
 
 function Bill() {
   const [tip, setTip] = useState("");
@@ -41,8 +41,8 @@ function Bill() {
 
   return (
     <div>
-      <h1>Bill Splitter</h1>
-      <main>
+      <h1 className='billh1'>Bill Splitter</h1>
+      <main className='billMain'>
         <div className="bill-input">
           <p className="p1">Bill</p>
           <div className="input-container">

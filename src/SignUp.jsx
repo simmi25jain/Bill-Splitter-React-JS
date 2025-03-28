@@ -1,83 +1,92 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { FaUser } from "react-icons/fa";
 import Instance from "./AxiosConfig";
 import { useNavigate } from 'react-router-dom';
 
-function SignUp() {
-    const navigate = useNavigate()
-    const [FormData, setFormData] = useState({
-        first_name: "",
-        last_name: "",
-        email_id: "",
-        user_password: "",
-    });
-    function handleOnChange() {
+// import '../src/SignUp.css';
 
+function SignUp() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        fname: "",
+        lname: "",
+        email: "",
+        password: "",
+    });
+
+    function handleOnChange(e) {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
+
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const response = Instance.post("/auth/register", { FormData });
-            if (response.staus === 201) {
-                console.log("Registration Successful")
-                navigate("/login");
+            const response = await Instance.post("/auth/register", formData);
+            if (response.status === 200) {
+                console.log("Registration Successful");
+                navigate("/");
             }
         } catch (error) {
-            console.error("Registration Failed");
+            console.error("Registration Failed", error);
         }
     }
 
     return (
-        <div>
-
-            <div>
-
-                <form onClick={handleSubmit}>
-
+        <div className='loginbody'>
+            <div className="login-container">
+                <h2>Bill Splitter</h2>
+                <p>Split your bills easily</p>
+                <form onSubmit={handleSubmit}> 
                     <input
+                        className="SignUpInput  " 
                         type="text"
                         name="fname"
                         id="first_name"
-                        value={FormData.first_name}
+                        value={formData.fname}
                         placeholder="First Name"
                         onChange={handleOnChange}
-                    ></input>
+                        required
+                    />
 
                     <input
+                        className="SignUpInput  "
                         type="text"
                         name="lname"
                         id="last_name"
-                        value={FormData.last}
+                        value={formData.lname}
                         placeholder="Last Name"
                         onChange={handleOnChange}
-                    ></input>
+                        required
+                    />
 
                     <input
+                        className="SignUpInput  "
                         type="email"
                         name="email"
                         id="email_id"
-                        value={FormData.email}
+                        value={formData.email}
                         placeholder="Email"
                         onChange={handleOnChange}
-                    ></input>
+                        required
+                    />
 
                     <input
+                        className="SignUpInput  "
                         type="password"
-                        name=" password"
+                        name="password"
                         id="user_password"
-                        value={FormData.user_password}
+                        value={formData.password}
                         placeholder="Password"
                         onChange={handleOnChange}
-                    ></input>
+                        required
+                    />
 
-                    <button type="submit" value="Register"
-                    ></button>
-
+                    <button className='loginbtn' type="submit">Sign Up</button>
                 </form>
+                <p>Already have an account? <Link to="/">Login In</Link></p>
             </div>
         </div>
-    )
+    );
 }
 
-export default SignUp
+export default SignUp;
