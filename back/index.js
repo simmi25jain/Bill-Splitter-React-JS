@@ -12,8 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  // origin: `https://inventory-management-front.onrender.com`,
+  // origin: process.env.FRONTEND_URL,
+  origin: `https://bill-splitter-react-js-front.onrender.com`,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
