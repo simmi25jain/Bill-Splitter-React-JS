@@ -11,7 +11,9 @@
 import { createRoot } from 'react-dom/client'
 // import './index.css'
 import App from './App.jsx'
+// import Bill from './Bill.jsx'
 
 createRoot(document.getElementById('root')).render(
 <App/>
+// {/* <Bill/> */}
 )
